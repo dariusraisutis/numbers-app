@@ -11,7 +11,12 @@ interface ICustomTextBoxProps {
 const CustomTextBox = (props: ICustomTextBoxProps) : JSX.Element => {
     const {type, numberInputLimit, value, handleOnChange} = props;
     return <>
-            <input type={type} max={numberInputLimit} value={value} onChange={handleOnChange} />       
+            <input
+                type={type} 
+                max={numberInputLimit} 
+                value={value} 
+                onChange={handleOnChange}
+            />       
         </>;
 }
 

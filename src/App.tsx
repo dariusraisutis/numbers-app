@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './App.css';
 import CustomTextBox from './components/CustomTextBox';
 import TextBoxTypeEnum from './enums/TextBoxTypeEnum';
 import CustomButton from './components/CustomButton';
-import axios from 'axios';
 import RequestTypeEnum from './enums/RequestTypeEnum';
 
 const App = () => {
   const [numberInputValue, setNumberInputValue] = useState(0);
-  const [requestType, setRequestType] = useState('');
   const [dayInputValue, setDayInputValue] = useState(0);
   const [monthInputValue, setMonthInputValue] = useState(0);
+  const [requestType, setRequestType] = useState('');
   const [result, setResult] = useState('');
   const [random, setRandom] = useState(false);
   
@@ -61,6 +61,7 @@ const App = () => {
   }
 
   const handleRandomChecboxChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
+    event.preventDefault();
     setRandom(event.currentTarget.checked);
   }
 
@@ -97,32 +98,32 @@ const App = () => {
   const RequestOptionInputsView = (): JSX.Element => {
     return <>
     {
-        !random 
-          ? requestType === RequestTypeEnum.Date
-            ? <div>
-                <label>{'Enter day:'}</label>
-                <CustomTextBox 
-                  type={TextBoxTypeEnum.Number} 
-                  handleOnChange={handleDayInputChange} 
-                  numberInputLimit={31} 
-                  value={dayInputValue} />
+      !random 
+        ? requestType === RequestTypeEnum.Date
+          ? <div>
+              <label>{'Enter day:'}</label>
+              <CustomTextBox 
+                type={TextBoxTypeEnum.Number} 
+                handleOnChange={handleDayInputChange} 
+                numberInputLimit={31} 
+                value={dayInputValue} />
 
-                <label>{'Enter month:'}</label>
-                <CustomTextBox 
-                  type={TextBoxTypeEnum.Number} 
-                  handleOnChange={handleMonthInputChange} 
-                  numberInputLimit={12} 
-                  value={monthInputValue} />
-              </div>
-            : <div>
-                <label>{'Enter number:'}</label>
-                <CustomTextBox 
-                  type={TextBoxTypeEnum.Number} 
-                  handleOnChange={handleNumberInputChange} 
-                  value={numberInputValue} />
-              </div>
-          : null
-      }
+              <label>{'Enter month:'}</label>
+              <CustomTextBox 
+                type={TextBoxTypeEnum.Number} 
+                handleOnChange={handleMonthInputChange} 
+                numberInputLimit={12} 
+                value={monthInputValue} />
+            </div>
+          : <div>
+              <label>{'Enter number:'}</label>
+              <CustomTextBox 
+                type={TextBoxTypeEnum.Number} 
+                handleOnChange={handleNumberInputChange} 
+                value={numberInputValue} />
+            </div>
+        : null
+    }
     </>;
   }
 
@@ -139,4 +140,3 @@ const App = () => {
 }
 
 export default App;
-

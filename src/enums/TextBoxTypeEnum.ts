@@ -4,4 +4,3 @@ enum TextBoxTypeEnum {
 };
 
 export default TextBoxTypeEnum;
-
