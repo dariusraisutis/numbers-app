@@ -65,14 +65,17 @@ textarea {
 }
 
 input[type=radio] {
-  display: inline-flex;
-  align-items: center;
-  margin: 5px 0;
+  vertical-align: middle;
+  margin: 5px;
 }
 
 .radio-group {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+}
+
+input[type=checkbox] {
+  margin: 5px;
 }
 
 legend {

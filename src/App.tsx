@@ -60,78 +60,65 @@ const App = () => {
     }
   }
 
-  const handleRandomChecboxChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
-    event.preventDefault();
+  const handleRandomChecboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRandom(event.currentTarget.checked);
-  }
-
-  const RequestOptionsView = (): JSX.Element => {
-    return <>
-      <div className='radio-group'>
-        <legend>
-          {'Select type of request you would like to make'}
-        </legend>
-        <div>
-          <label htmlFor='trivia'>{'Trivia'}</label>
-          <input type={'radio'} name={'requestType'} value={RequestTypeEnum.Trivia} onChange={handleRadioButtonChange} />
-        </div>
-        <div>
-          <label htmlFor='math'>{'Math'}</label>
-          <input type={'radio'} name={'requestType'} value={RequestTypeEnum.Math} onChange={handleRadioButtonChange} />
-        </div>
-        <div>
-          <label htmlFor='date'>{'Date'}</label>
-          <input type={'radio'} name={'requestType'} value={RequestTypeEnum.Date} onChange={handleRadioButtonChange} />
-        </div>
-        <div>
-          <label htmlFor='year'>{'Year'}</label>
-          <input type={'radio'} name={'requestType'} value={RequestTypeEnum.Year} onChange={handleRadioButtonChange} />
-        </div>
-      </div>
-      <div>
-        <label htmlFor='random'>{'Random'}</label>
-        <input type={'checkbox'} onChange={handleRandomChecboxChange} checked={random} />
-      </div>
-    </>;
-  }
-
-  const RequestOptionInputsView = (): JSX.Element => {
-    return <>
-    {
-      !random 
-        ? requestType === RequestTypeEnum.Date
-          ? <div>
-              <label>{'Enter day:'}</label>
-              <CustomTextBox 
-                type={TextBoxTypeEnum.Number} 
-                handleOnChange={handleDayInputChange} 
-                numberInputLimit={31} 
-                value={dayInputValue} />
-
-              <label>{'Enter month:'}</label>
-              <CustomTextBox 
-                type={TextBoxTypeEnum.Number} 
-                handleOnChange={handleMonthInputChange} 
-                numberInputLimit={12} 
-                value={monthInputValue} />
-            </div>
-          : <div>
-              <label>{'Enter number:'}</label>
-              <CustomTextBox 
-                type={TextBoxTypeEnum.Number} 
-                handleOnChange={handleNumberInputChange} 
-                value={numberInputValue} />
-            </div>
-        : null
-    }
-    </>;
   }
 
   return <>
     <div className='App'>
-      <RequestOptionsView />
-      <RequestOptionInputsView />
-      <CustomButton buttonTitle='Click' handleOnClick={handleOnButtonClick} />
+        <legend>
+          {'Select type of request you would like to make'}
+        </legend>
+      <div className='radio-group'>
+        <div>
+          <input type={'radio'} name={'requestType'} value={RequestTypeEnum.Trivia} onChange={handleRadioButtonChange} />
+          <label htmlFor='trivia'>{'Trivia'}</label>
+        </div>
+        <div>
+          <input type={'radio'} name={'requestType'} value={RequestTypeEnum.Math} onChange={handleRadioButtonChange} />
+          <label htmlFor='math'>{'Math'}</label>
+        </div>
+        <div>
+          <input type={'radio'} name={'requestType'} value={RequestTypeEnum.Date} onChange={handleRadioButtonChange} />
+          <label htmlFor='date'>{'Date'}</label>
+        </div>
+        <div>
+          <input type={'radio'} name={'requestType'} value={RequestTypeEnum.Year} onChange={handleRadioButtonChange} />
+          <label htmlFor='year'>{'Year'}</label>
+        </div>
+        <div>
+          <input type={'checkbox'} onChange={handleRandomChecboxChange} checked={random} />
+          <label htmlFor='random'>{'Random'}</label>
+        </div>
+      </div>
+      {
+        !random 
+          ? requestType === RequestTypeEnum.Date
+            ? <div>
+                <label>{'Enter day:'}</label>
+                <CustomTextBox 
+                  type={TextBoxTypeEnum.Number} 
+                  handleOnChange={handleDayInputChange} 
+                  numberInputLimit={31} 
+                  value={dayInputValue} />
+
+                <label>{'Enter month:'}</label>
+                <CustomTextBox 
+                  type={TextBoxTypeEnum.Number} 
+                  handleOnChange={handleMonthInputChange} 
+                  numberInputLimit={12} 
+                  value={monthInputValue} />
+              </div>
+            : <div>
+                <label>{'Enter number:'}</label>
+                <CustomTextBox 
+                  type={TextBoxTypeEnum.Number} 
+                  handleOnChange={handleNumberInputChange} 
+                  value={numberInputValue} />
+              </div>
+          : null
+      }
+      <CustomButton buttonTitle='Get number fact..' handleOnClick={handleOnButtonClick} />
       <div>
         <textarea disabled={true} rows={10} cols={60} value={result} />
       </div>
