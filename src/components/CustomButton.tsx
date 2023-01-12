@@ -1,12 +1,12 @@
-interface ICustomButtonProps {
+
+interface ICustomButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
     buttonTitle: string;
-    handleOnClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const CustomButton = (props: ICustomButtonProps) : JSX.Element => {
-    const {buttonTitle, handleOnClick} = props;
+    const {buttonTitle, onClick, ...restProps} = props;
     return <>
-        <button onClick={handleOnClick}>
+        <button onClick={onClick} {...restProps}>
             {buttonTitle}
         </button>
     </>;

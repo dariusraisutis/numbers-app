@@ -66,9 +66,9 @@ const App = () => {
 
   return <>
     <div className='App'>
-        <legend>
-          {'Select type of request you would like to make'}
-        </legend>
+      <legend>
+        {'Select type of request you would like to make'}
+      </legend>
       <div className='radio-group'>
         <div>
           <input type={'radio'} name={'requestType'} value={RequestTypeEnum.Trivia} onChange={handleRadioButtonChange} />
@@ -118,7 +118,7 @@ const App = () => {
               </div>
           : null
       }
-      <CustomButton buttonTitle='Get number fact..' handleOnClick={handleOnButtonClick} />
+      <CustomButton buttonTitle='Get number fact..' onClick={handleOnButtonClick} />
       <div>
         <textarea disabled={true} rows={10} cols={60} value={result} />
       </div>

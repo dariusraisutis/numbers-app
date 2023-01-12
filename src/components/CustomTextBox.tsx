@@ -1,21 +1,19 @@
 import React from 'react';
 import TextBoxTypeEnum from '../enums/TextBoxTypeEnum';
 
-interface ICustomTextBoxProps {
+interface ICustomTextBoxProps extends React.HTMLAttributes<HTMLInputElement> {
     type: TextBoxTypeEnum;
-    numberInputLimit?: number;
     value?: number | string;
-    handleOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const CustomTextBox = (props: ICustomTextBoxProps) : JSX.Element => {
-    const {type, numberInputLimit, value, handleOnChange} = props;
+    const {type, value, onChange, ...restProps} = props;
     return <>
             <input
                 type={type} 
-                max={numberInputLimit} 
                 value={value} 
-                onChange={handleOnChange}
+                onChange={onChange}
+                {...restProps}
             />       
         </>;
 }
